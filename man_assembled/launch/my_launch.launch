@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+	
+    	<arg name="x" default="0"/>
+	<arg name="y" default="-0.022059"/>
+	<arg name="z" default="0.022059"/>
+	<arg name="roll" default="1.538159"/>
+	<arg name="pitch" default="0"/>
+	<arg name="yaw" default="0"/>
+	
+	
+								
+    <param name="robot_description"
+     command="$(find xacro)/xacro '$(find man_assembled)/urdf/man_assembled.urdf.xacro'" />
+    
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+     args="-param robot_description -urdf -model my_robot
+     			-x $(arg x) -y $(arg y) -z $(arg z)
+			-R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+    
+    <rosparam file="$(find man_assembled)/config/my_config.yaml" command="load" ns="/man_assembled" />
+
+    <node name="controller_Spawner" pkg="controller_manager" type="spawner"
+    respawn="false" output="screen" ns="/man_assembled"
+        args="joint_1_controller
+              joint_2_controller
+              joint_3_controller" >
+    
+    <remap from="/joint_states" to="man_assembled/joint_states" />
+    </node>
+    <node name="joint_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen" />
+
+</launch>

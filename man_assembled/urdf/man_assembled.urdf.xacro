@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="man_assembled" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find man_assembled)/urdf/gazebo_refs.gazebo" />
+<xacro:include filename="$(find man_assembled)/urdf/joints.trans" />
+
+  
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0.0059956010936305 1.38777878078145E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="0.0001293"
+        ixy="3.5203E-22"
+        ixz="-9.8078E-38"
+        iyy="0.00025112"
+        iyz="5.0274E-21"
+        izz="0.0001293" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.592156862745098 0.4 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="-0.000531805185258 0.0394710939079583 0.000789505623539979"
+        rpy="0 0 0" />
+      <mass
+        value="0.05" />
+      <inertia
+        ixx="3.5066E-07"
+        ixy="-1.1702E-09"
+        ixz="-4.974E-08"
+        iyy="2.0059E-07"
+        iyz="1.7372E-09"
+        izz="3.9099E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.341176470588235 0.83921568627451 0.411764705882353 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_2_link1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0.50"
+      upper="3.14"
+      effort="10"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.00598520463106668 0.0383602075070752 0.0112131399738354"
+        rpy="0 0 0" />
+      <mass
+        value="0.025" />
+      <inertia
+        ixx="9.9715E-06"
+        ixy="2.0589E-09"
+        ixz="1.3784E-09"
+        iyy="3.2637E-06"
+        iyz="-4.2783E-06"
+        izz="6.7858E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link1_2_link2"
+    type="revolute">
+    <origin
+      xyz="0.003352 0.045789 -0.0049763"
+      rpy="0 0.97801 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.60"
+      upper="0.50"
+      effort="10"
+      velocity="3.14"
+      />
+  </joint>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="0.005984836929388 0.00247764866449771 -0.0454128989191748"
+        rpy="0 0 0" />
+      <mass
+        value="0.015" />
+      <inertia
+        ixx="1.4914E-05"
+        ixy="-5.8702E-09"
+        ixz="5.007E-09"
+        iyy="6.3508E-06"
+        iyz="7.141E-06"
+        izz="8.632E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://man_assembled/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link2_2_link3"
+    type="revolute">
+    <origin
+      xyz="0.001 0.07702 0.022514"
+      rpy="2.8572 0 -3.1416" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0.45"
+      upper="1.54"
+      effort="10"
+      velocity="2.00" />
+  </joint>
+
+
+
+
+</robot>

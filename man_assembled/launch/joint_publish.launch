@@ -1,0 +1,17 @@
+<!-- This is for launch the custom joint value publishers(cpp codes) -->
+<launch>
+	<arg default="$(find man_assembled)/urdf/man_assembled.urdf.xacro" name="model"/>
+	<arg default="true" name="gui"/>
+
+								
+	<param command="$(find xacro)/xacro $(arg model)" name="robot_description"/>
+	<param name="use_gui" value="$(arg gui)"/>
+	
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find man_assembled)/urdf.rviz"/>
+	
+
+	
+</launch>

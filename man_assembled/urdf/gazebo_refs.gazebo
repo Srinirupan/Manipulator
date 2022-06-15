@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="man_assembled" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>man_assembled</robotNamespace>
+    </plugin>
+</gazebo>
+<gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+</gazebo>
+<gazebo reference="link1">
+    <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="link2">
+    <material>Gazebo/Green</material>
+</gazebo>
+</robot>
